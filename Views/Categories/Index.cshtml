@@ -1,0 +1,58 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using OnlineClothStore.db;
+@model IPagedList<Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container">
+    <h4>Categories</h4>
+    <div class="row">
+        <div class="col-md-9">
+            
+        </div>
+        <div class="col-md-3">
+            @using (Html.BeginForm("Index", "Categories", FormMethod.Get, new { @class = "form-inline" }))
+            {
+                <div class="form-group">
+
+                    @Html.TextBox("search",null, new { @class = "form-control", placeholder = "Search for..." })
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        Category Name
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Category_Name)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Category_Id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Category_Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Category_Id })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            <div class="pagination">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+            </div>
+        </div>

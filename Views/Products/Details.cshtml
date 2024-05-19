@@ -1,0 +1,65 @@
+﻿@model OnlineClothStore.db.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+
+    <div>
+        <h4>Product Details</h4>
+        <hr />
+        <dl class="dl-horizontal">
+
+            <dt>
+                Product Image
+            </dt>
+
+            <dd>
+                <img src="@Url.Content(Session["Image2"].ToString())" height="80" width="80" />
+                @*<img src="@(string.IsNullOrWhiteSpace(Model.Product_Image) ? "/path-to-default-image.jpeg" : Url.Content(Session["Image2"].ToString())" alt="@Model.Product_Name" height="100" width="100" />*@
+
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Product_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Product_Name)
+            </dd>
+
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Product_Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Product_Price)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Product_Quantity)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Product_Quantity)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Category.Category_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Category.Category_Name)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Product_Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
